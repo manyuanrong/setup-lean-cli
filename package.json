@@ -1,0 +1,19 @@
+{
+  "name": "setup-lean-cli",
+  "description": "Setup LeanCloud CLI in GitHub Actions",
+  "version": "1.0.0",
+  "author": "manyuanrong",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/tool-cache": "^1.6.1",
+    "node-fetch": "^2.6.1",
+    "semver": "^7.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "@types/node-fetch": "^2.5.10",
+    "@types/semver": "^7.3.4"
+  }
+}

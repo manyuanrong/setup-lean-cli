@@ -1,0 +1,17 @@
+name: 'Setup LeanCloud Cli'
+description: 'Setup LeanCloud Cli by installing, downloading, and adding it to the path.'
+author: 'manyuanrong'
+branding:
+  icon: 'play-circle'
+  color: 'gray-dark'
+inputs:
+  version:
+    required: false
+    description: The LeanCloud version to install.
+    default: '0.25.0'
+outputs:
+  version:
+    description: 'The LeanCloud version that was installed.'
+runs:
+  using: 'node12'
+  main: 'main.js'
