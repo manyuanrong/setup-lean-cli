@@ -1,4 +1,5 @@
 const os = require('os');
+const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const core = require('@actions/core');
@@ -18,9 +19,22 @@ async function install(version) {
   core.info(`Downloading LeanCloud CLi from ${url}.`);
 
   const filePath = await tc.downloadTool(url);
-  const dir = path.dirname(filePath);
 
-  const newCachedPath = await tc.cacheDir(dir, 'lean', version);
+  const binDir = path.join(__dirname, '.bin');
+  if (!fs.existsSync(binDir)) {
+    fs.mkdirSync(binDir, {
+      recursive: true,
+    });
+  }
+
+  const binPath = path.join(
+    binDir,
+    `lean${process.platform === 'win32' ? '.exe' : ''}`
+  );
+  fs.copyFileSync(filePath, binPath);
+  fs.chmodSync(binPath, 0o755);
+
+  const newCachedPath = await tc.cacheDir(binDir, 'lean', version);
   core.info(`Cached LeanCloud CLi to ${newCachedPath}.`);
   core.addPath(newCachedPath);
 }
